@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">EV Şarj Rehberi | aracsarjrehberi.com</title>
+  <meta name="description" content="Akıllı EV Şarj Rehberi: Şarj sürenizi ve maliyetinizi hesaplayın, altyapınıza uygun istasyonu bulun. Aytech Teknoloji güvencesiyle." />
+  <meta name="keywords" content="ev şarj istasyonu, elektrikli araç şarj, Tunçmatik EV, wallbox Türkiye, 7kW 11kW 22kW şarj, aracsarjrehberi" />
+  <link rel="canonical" href="https://aracsarjrehberi.com/" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PLACEHOLDER');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root{--green:#27AE60;--green-light:#2ECC71;--green-dim:rgba(39,174,96,0.12);--green-glow:rgba(39,174,96,0.35);--ink:#111418;--ink-2:#1c2128;--white:#FFFFFF;--muted:rgba(255,255,255,0.55);--border:rgba(255,255,255,0.08);--card-bg:rgba(255,255,255,0.04);--font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;--r:12px;--r-lg:20px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);background:var(--ink);color:var(--white);line-height:1.6;overflow-x:hidden}
+
+    /* TOPBAR */
+    .topbar{background:rgba(39,174,96,0.1);border-bottom:1px solid rgba(39,174,96,0.2);padding:8px 24px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.03em}
+    .topbar a{color:var(--green-light);text-decoration:none}
+    .topbar-badge{background:var(--green);color:#fff;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;background:rgba(17,20,24,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-family:var(--font-display);font-weight:800;font-size:18px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px}
+    .nav-logo-icon{width:32px;height:32px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+    .nav-logo span{color:var(--green)}
+    .nav-right{display:flex;align-items:center;gap:20px}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:var(--white)}
+    .nav-cta{background:var(--green)!important;color:#fff!important;padding:8px 18px!important;border-radius:8px;font-weight:600!important;font-size:13px!important;transition:background .2s!important}
+    .nav-cta:hover{background:var(--green-light)!important}
+
+    /* LANG TOGGLE */
+    .lang-toggle{display:flex;align-items:center;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;overflow:hidden;flex-shrink:0}
+    .lang-btn{padding:6px 13px;background:transparent;border:none;color:var(--muted);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .18s}
+    .lang-btn.active{background:var(--green);color:#fff}
+    .lang-btn:hover:not(.active){color:var(--white)}
+    .lang-divider{width:1px;height:20px;background:var(--border)}
+
+    /* HERO */
+    .hero{position:relative;padding:100px 40px 80px;text-align:center;overflow:hidden}
+    .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(39,174,96,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(39,174,96,0.05) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 40%,transparent 100%)}
+    .hero-glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(circle,rgba(39,174,96,0.2) 0%,transparent 70%);pointer-events:none}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--green-dim);border:1px solid rgba(39,174,96,0.3);color:var(--green-light);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:28px;position:relative}
+    .hero-tag-dot{width:7px;height:7px;background:var(--green-light);border-radius:50%;animation:pulse-dot 2s infinite}
+    @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+    .hero h1{font-family:var(--font-display);font-size:clamp(36px,5.5vw,72px);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:20px;position:relative}
+    .hero h1 em{font-style:normal;color:var(--green)}
+    .hero-sub{font-size:clamp(15px,1.8vw,18px);color:var(--muted);max-width:600px;margin:0 auto 48px;font-weight:300;position:relative}
+
+    /* ANSWER BOX */
+    .answer-box{max-width:760px;margin:0 auto 80px;background:linear-gradient(135deg,rgba(39,174,96,0.12),rgba(39,174,96,0.04));border:1px solid rgba(39,174,96,0.3);border-radius:var(--r-lg);padding:36px 40px;position:relative;text-align:left}
+    .answer-box::before{content:'';position:absolute;inset:0;border-radius:var(--r-lg);background:linear-gradient(135deg,rgba(39,174,96,0.08) 0%,transparent 50%);pointer-events:none}
+    .answer-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+    .answer-label::before{content:'';display:block;width:24px;height:2px;background:var(--green)}
+    .answer-box h2{font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);font-weight:700;margin-bottom:16px}
+    .answer-text{font-size:16px;line-height:1.75;color:rgba(255,255,255,.85);margin-bottom:20px}
+    .answer-text strong{color:var(--green-light)}
+    .answer-note{font-size:13px;color:var(--muted);background:rgba(255,255,255,0.04);border-left:3px solid var(--green);padding:12px 16px;border-radius:0 8px 8px 0;line-height:1.6}
+
+    /* SECTIONS */
+    .section{max-width:1100px;margin:0 auto;padding:80px 40px}
+    .section-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+    .section-title{font-family:var(--font-display);font-size:clamp(26px,3vw,42px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+    .section-desc{color:var(--muted);font-size:16px;max-width:560px;font-weight:300;margin-bottom:48px}
+
+    /* CALCULATOR */
+    #calculator-section{background:var(--ink-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    @media(max-width:768px){.calc-grid{grid-template-columns:1fr}}
+    .calc-form{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px}
+    .calc-field{margin-bottom:24px}
+    .calc-field label{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .toggle-group{display:flex;gap:8px}
+    .toggle-btn{flex:1;padding:10px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s}
+    .toggle-btn:hover{border-color:var(--green);color:var(--white)}
+    .toggle-btn.active{background:var(--green);border-color:var(--green);color:#fff}
+    .calc-select{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:var(--font-body);font-size:15px;padding:12px 40px 12px 16px;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color .2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2327AE60' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+    .calc-select:focus{outline:none;border-color:var(--green)}
+    .calc-select option{background:var(--ink)}
+    .calc-slider{width:100%;-webkit-appearance:none;height:4px;background:rgba(255,255,255,.1);border-radius:2px;outline:none;cursor:pointer}
+    .calc-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--green);cursor:pointer;box-shadow:0 0 12px var(--green-glow)}
+    .slider-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:8px}
+    .slider-value{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--green);margin-bottom:10px}
+    .charge-range-group{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .mini-select{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:var(--font-body);font-size:14px;padding:10px 14px;width:100%;appearance:none;-webkit-appearance:none;cursor:pointer}
+    .mini-select:focus{outline:none;border-color:var(--green)}
+    .mini-select option{background:var(--ink)}
+    .calc-btn{width:100%;padding:16px;background:var(--green);border:none;border-radius:10px;color:#fff;font-family:var(--font-display);font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.02em;margin-top:8px}
+    .calc-btn:hover{background:var(--green-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(39,174,96,.4)}
+    .calc-result{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px;min-height:300px;display:flex;flex-direction:column;gap:20px}
+    .result-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;color:var(--muted);text-align:center;gap:16px}
+    .result-empty-icon{font-size:48px;opacity:.3}
+    .result-empty p{font-size:14px;line-height:1.6;max-width:220px}
+    .result-stat{background:rgba(39,174,96,.08);border:1px solid rgba(39,174,96,.2);border-radius:var(--r);padding:24px}
+    .result-stat-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+    .result-stat-value{font-family:var(--font-display);font-size:38px;font-weight:800;letter-spacing:-.02em}
+    .result-stat-sub{font-size:13px;color:var(--muted);margin-top:4px}
+    .result-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .result-meta-item{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:16px}
+    .result-meta-label{font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+    .result-meta-value{font-family:var(--font-display);font-size:18px;font-weight:700}
+    .result-warning{background:rgba(255,165,0,.07);border:1px solid rgba(255,165,0,.25);border-radius:10px;padding:16px;font-size:13px;color:rgba(255,200,100,.9);line-height:1.6}
+    .result-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-primary{flex:1;padding:13px 20px;background:var(--green);border:none;border-radius:8px;color:#fff;font-family:var(--font-body);font-size:14px;font-weight:600;text-decoration:none;text-align:center;cursor:pointer;transition:all .2s;display:inline-block}
+    .btn-primary:hover{background:var(--green-light);transform:translateY(-1px)}
+    .btn-secondary{flex:1;padding:13px 20px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--white);font-family:var(--font-body);font-size:14px;font-weight:600;text-decoration:none;text-align:center;cursor:pointer;transition:all .2s;display:inline-block}
+    .btn-secondary:hover{border-color:var(--green);color:var(--green)}
+
+    /* GUIDE */
+    #guide-section{background:var(--ink)}
+    .tariff-table{width:100%;border-collapse:collapse;margin-bottom:32px}
+    .tariff-table th{background:rgba(39,174,96,.1);color:var(--green);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 20px;text-align:left;border-bottom:1px solid rgba(39,174,96,.2)}
+    .tariff-table td{padding:14px 20px;font-size:14px;border-bottom:1px solid var(--border);color:rgba(255,255,255,.8)}
+    .tariff-table tr:last-child td{border-bottom:none}
+    .tariff-table tr:hover td{background:rgba(255,255,255,.02)}
+    .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+    .badge-green{background:rgba(39,174,96,.15);color:var(--green-light)}
+    .badge-orange{background:rgba(255,106,0,.15);color:#ff8c3f}
+    .badge-blue{background:rgba(52,152,219,.15);color:#5dade2}
+    .guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+    @media(max-width:768px){.guide-grid{grid-template-columns:1fr}}
+    .guide-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:border-color .2s}
+    .guide-card:hover{border-color:rgba(39,174,96,.3)}
+    .guide-card-icon{font-size:28px;margin-bottom:14px}
+    .guide-card h4{font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:8px}
+    .guide-card p{font-size:13px;color:var(--muted);line-height:1.65}
+    .aytech-why{background:linear-gradient(135deg,rgba(39,174,96,.1),rgba(39,174,96,.03));border:1px solid rgba(39,174,96,.2);border-radius:var(--r-lg);padding:36px;margin-top:40px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+    .aytech-why-text h3{font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:12px}
+    .aytech-why-text p{font-size:15px;color:var(--muted);line-height:1.7;max-width:500px}
+    .aytech-why-text p strong{color:var(--white)}
+    .aytech-badge{display:inline-block;background:var(--green);color:#fff;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+
+    /* PRODUCTS */
+    #products-section{background:var(--ink-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    @media(max-width:768px){.products-grid{grid-template-columns:1fr}}
+    .product-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;transition:all .25s;position:relative;overflow:hidden}
+    .product-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(39,174,96,.07) 0%,transparent 50%);opacity:0;transition:opacity .25s}
+    .product-card:hover{border-color:rgba(39,174,96,.35);transform:translateY(-3px)}
+    .product-card:hover::before{opacity:1}
+    .product-card.featured{border-color:rgba(39,174,96,.35);background:linear-gradient(135deg,rgba(39,174,96,.1),rgba(39,174,96,.03))}
+    .product-tag{position:absolute;top:20px;right:20px;background:var(--green);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px}
+    .product-icon{font-size:36px;margin-bottom:16px}
+    .product-name{font-family:var(--font-display);font-size:20px;font-weight:800;margin-bottom:6px}
+    .product-series{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+    .product-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:20px;flex:1}
+    .product-specs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+    .spec-chip{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:500;color:rgba(255,255,255,.7)}
+    .product-actions{display:flex;gap:10px}
+
+    /* NETWORK */
+    #network-section{background:var(--ink)}
+    .network-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media(max-width:768px){.network-grid{grid-template-columns:1fr}}
+    .network-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-decoration:none;color:var(--white);display:block;transition:all .2s}
+    .network-card:hover{border-color:rgba(39,174,96,.3);transform:translateY(-2px)}
+    .network-card-tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+    .network-card h4{font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:6px}
+    .network-card p{font-size:13px;color:var(--muted);line-height:1.6}
+    .network-card-url{font-size:12px;color:var(--green);margin-top:14px;font-weight:500}
+
+    /* FOOTER */
+    footer{background:var(--ink-2);border-top:1px solid var(--border);padding:48px 40px 32px}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;flex-wrap:wrap;gap:32px}
+    .footer-brand p{font-size:13px;color:var(--muted);max-width:300px;margin-top:12px;line-height:1.65}
+    .footer-links h5{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+    .footer-links ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .footer-links a{font-size:14px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--green)}
+    .footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted)}
+
+    /* WA FLOAT */
+    .wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:wa-pulse 2.5s infinite}
+    @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.1)}}
+    .wa-float svg{width:28px;height:28px;fill:#fff}
+
+    /* ANIMATIONS */
+    .fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:480px){
+      nav{padding:0 16px}
+      .nav-links{display:none}
+      .hero{padding:60px 24px 48px}
+      .answer-box{padding:24px 20px}
+      .section{padding:60px 24px}
+      .result-meta{grid-template-columns:1fr}
+      footer{padding:40px 24px 24px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span data-i18n="topbar_hub"></span>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="https://wa.me/905058525331" target="_blank">+90 505 852 53 31</a>
+    <a href="https://aytechteknoloji.com" target="_blank" class="topbar-badge">Aytech</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">⚡</div>
+    aracsarj<span>rehberi</span>.com
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#calculator-section" data-i18n="nav_calc"></a></li>
+      <li><a href="#guide-section" data-i18n="nav_guide"></a></li>
+      <li><a href="#products-section" data-i18n="nav_products"></a></li>
+      <li><a href="https://tuncmatikservis.com" target="_blank" class="nav-cta" data-i18n="nav_install"></a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">TR</button>
+      <div class="lang-divider"></div>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">
+    <span class="hero-tag-dot"></span>
+    <span data-i18n="hero_tag"></span>
+  </div>
+  <h1 data-i18n="hero_h1"></h1>
+  <p class="hero-sub" data-i18n="hero_sub"></p>
+
+  <div class="answer-box fade-in">
+    <div class="answer-label" data-i18n="answer_label"></div>
+    <h2 data-i18n="answer_h2"></h2>
+    <p class="answer-text" data-i18n="answer_body"></p>
+    <div class="answer-note" data-i18n="answer_note"></div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculator-section">
+  <div class="section">
+    <div class="section-label" data-i18n="calc_label"></div>
+    <h2 class="section-title" data-i18n="calc_title"></h2>
+    <p class="section-desc" data-i18n="calc_desc"></p>
+    <div class="calc-grid">
+      <div class="calc-form fade-in">
+        <div class="calc-field">
+          <label data-i18n="calc_infra"></label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="mono-btn" onclick="setPhase('mono',this)" data-i18n="calc_mono"></button>
+            <button class="toggle-btn" id="tri-btn" onclick="setPhase('tri',this)" data-i18n="calc_tri"></button>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label data-i18n="calc_power"></label>
+          <select class="calc-select" id="stationPower"></select>
+        </div>
+        <div class="calc-field">
+          <label data-i18n="calc_battery"></label>
+          <div class="slider-value" id="batteryDisplay">50 kWh</div>
+          <input type="range" class="calc-slider" id="batterySlider" min="50" max="100" step="5" value="50" oninput="updateBattery(this.value)" />
+          <div class="slider-labels"><span>50 kWh</span><span>100 kWh</span></div>
+        </div>
+        <div class="calc-field">
+          <label data-i18n="calc_range"></label>
+          <div class="charge-range-group">
+            <select class="mini-select" id="chargeFrom">
+              <option value="10" data-i18n="from_10"></option>
+              <option value="20" selected data-i18n="from_20"></option>
+              <option value="30" data-i18n="from_30"></option>
+              <option value="40" data-i18n="from_40"></option>
+              <option value="50" data-i18n="from_50"></option>
+            </select>
+            <select class="mini-select" id="chargeTo">
+              <option value="70" data-i18n="to_70"></option>
+              <option value="80" selected data-i18n="to_80"></option>
+              <option value="90" data-i18n="to_90"></option>
+              <option value="100" data-i18n="to_100"></option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calculate()" data-i18n="calc_btn"></button>
+      </div>
+      <div class="calc-result" id="calcResult">
+        <div class="result-empty">
+          <div class="result-empty-icon">🔌</div>
+          <p data-i18n="calc_empty"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section id="guide-section">
+  <div class="section">
+    <div class="section-label" data-i18n="guide_label"></div>
+    <h2 class="section-title" data-i18n="guide_title"></h2>
+    <p class="section-desc" data-i18n="guide_desc"></p>
+    <table class="tariff-table fade-in">
+      <thead>
+        <tr>
+          <th data-i18n="t_tier"></th>
+          <th data-i18n="t_usage"></th>
+          <th data-i18n="t_price"></th>
+          <th data-i18n="t_strategy"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-green" data-i18n="t_low"></span></td>
+          <td>0 – 240 kWh</td>
+          <td><strong>~3.11 TL/kWh</strong></td>
+          <td data-i18n="t_low_strat"></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange" data-i18n="t_high"></span></td>
+          <td data-i18n="t_high_usage"></td>
+          <td><strong>~3.90 TL/kWh</strong></td>
+          <td data-i18n="t_high_strat"></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue" data-i18n="t_night"></span></td>
+          <td>23:00 – 07:00</td>
+          <td><strong data-i18n="t_night_price"></strong></td>
+          <td data-i18n="t_night_strat"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="guide-grid fade-in">
+      <div class="guide-card">
+        <div class="guide-card-icon">🌙</div>
+        <h4 data-i18n="g1_title"></h4>
+        <p data-i18n="g1_body"></p>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-icon">📊</div>
+        <h4 data-i18n="g2_title"></h4>
+        <p data-i18n="g2_body"></p>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-icon">🔋</div>
+        <h4 data-i18n="g3_title"></h4>
+        <p data-i18n="g3_body"></p>
+      </div>
+    </div>
+    <div class="aytech-why fade-in">
+      <div class="aytech-why-text" style="flex:1;">
+        <div style="font-size:40px;margin-bottom:16px;">🏭</div>
+        <h3 data-i18n="why_title"></h3>
+        <p data-i18n="why_body"></p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0;">
+        <span class="aytech-badge" data-i18n="why_b1"></span>
+        <span class="aytech-badge">📍 Maltepe, İstanbul</span>
+        <span class="aytech-badge" data-i18n="why_b2"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products-section">
+  <div class="section">
+    <div class="section-label">Tunçmatik EV Series</div>
+    <h2 class="section-title" data-i18n="prod_title"></h2>
+    <p class="section-desc" data-i18n="prod_desc"></p>
+    <div class="products-grid fade-in">
+      <div class="product-card">
+        <div class="product-icon">🔌</div>
+        <div class="product-name">Pico</div>
+        <div class="product-series">Tunçmatik EV Series</div>
+        <p class="product-desc" data-i18n="p1_desc"></p>
+        <div class="product-specs">
+          <span class="spec-chip">7.4 kW AC</span>
+          <span class="spec-chip" data-i18n="phase_mono"></span>
+          <span class="spec-chip">Type 2</span>
+          <span class="spec-chip" data-i18n="p1_loc"></span>
+        </div>
+        <div class="product-actions">
+          <a href="https://aytechelektromarket.com" target="_blank" class="btn-primary" style="font-size:13px;" data-i18n="buy_btn"></a>
+          <a href="https://tuncmatikservis.com" target="_blank" class="btn-secondary" style="font-size:13px;" data-i18n="install_btn"></a>
+        </div>
+      </div>
+      <div class="product-card featured">
+        <div class="product-tag" data-i18n="p2_tag"></div>
+        <div class="product-icon">⚡</div>
+        <div class="product-name">My Charger</div>
+        <div class="product-series">Tunçmatik EV Series</div>
+        <p class="product-desc" data-i18n="p2_desc"></p>
+        <div class="product-specs">
+          <span class="spec-chip">7.4 / 11 / 22 kW</span>
+          <span class="spec-chip">RFID</span>
+          <span class="spec-chip">WiFi</span>
+          <span class="spec-chip">OCPP 1.6</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://aytechelektromarket.com" target="_blank" class="btn-primary" style="font-size:13px;" data-i18n="buy_btn"></a>
+          <a href="https://tuncmatikservis.com" target="_blank" class="btn-secondary" style="font-size:13px;" data-i18n="install_btn"></a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🏢</div>
+        <div class="product-name">Public</div>
+        <div class="product-series">Tunçmatik EV Series</div>
+        <p class="product-desc" data-i18n="p3_desc"></p>
+        <div class="product-specs">
+          <span class="spec-chip">22 kW AC</span>
+          <span class="spec-chip" data-i18n="phase_tri"></span>
+          <span class="spec-chip" data-i18n="p3_pay"></span>
+          <span class="spec-chip">IP54</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://aytechelektromarket.com" target="_blank" class="btn-primary" style="font-size:13px;" data-i18n="buy_btn"></a>
+          <a href="https://tuncmatikservis.com" target="_blank" class="btn-secondary" style="font-size:13px;" data-i18n="install_btn"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NETWORK -->
+<section id="network-section">
+  <div class="section">
+    <div class="section-label" data-i18n="net_label"></div>
+    <h2 class="section-title" data-i18n="net_title"></h2>
+    <p class="section-desc" data-i18n="net_desc"></p>
+    <div class="network-grid fade-in">
+      <a href="https://upsrehberi.com" target="_blank" class="network-card">
+        <div class="network-card-tag" data-i18n="net_tag1"></div>
+        <h4>UPS Rehberi</h4>
+        <p data-i18n="net_p1"></p>
+        <div class="network-card-url">upsrehberi.com →</div>
+      </a>
+      <a href="https://kesintisizguc.com" target="_blank" class="network-card">
+        <div class="network-card-tag" data-i18n="net_tag2"></div>
+        <h4>Kesintisiz Güç</h4>
+        <p data-i18n="net_p2"></p>
+        <div class="network-card-url">kesintisizguc.com →</div>
+      </a>
+      <a href="https://aytechteknoloji.com" target="_blank" class="network-card">
+        <div class="network-card-tag" data-i18n="net_tag3"></div>
+        <h4>Aytech Teknoloji</h4>
+        <p data-i18n="net_p3"></p>
+        <div class="network-card-url">aytechteknoloji.com →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:0;">
+          <div class="nav-logo-icon">⚡</div>
+          <span style="font-family:var(--font-display);font-weight:800;font-size:16px;">aracsarj<span style="color:var(--green);">rehberi</span>.com</span>
+        </div>
+        <p data-i18n="footer_brand"></p>
+      </div>
+      <div class="footer-links">
+        <h5 data-i18n="footer_col1"></h5>
+        <ul>
+          <li><a href="#calculator-section" data-i18n="footer_l1"></a></li>
+          <li><a href="#guide-section" data-i18n="footer_l2"></a></li>
+          <li><a href="#products-section" data-i18n="footer_l3"></a></li>
+          <li><a href="https://aytechelektromarket.com" target="_blank" data-i18n="footer_l4"></a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Aytech Network</h5>
+        <ul>
+          <li><a href="https://aytechteknoloji.com" target="_blank">aytechteknoloji.com</a></li>
+          <li><a href="https://tuncmatikservis.com" target="_blank">tuncmatikservis.com</a></li>
+          <li><a href="https://aytechelektromarket.com" target="_blank">aytechelektromarket.com</a></li>
+          <li><a href="https://upsrehberi.com" target="_blank">upsrehberi.com</a></li>
+          <li><a href="https://kesintisizguc.com" target="_blank">kesintisizguc.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5 data-i18n="footer_contact"></h5>
+        <ul>
+          <li><a href="https://wa.me/905058525331" target="_blank">WhatsApp</a></li>
+          <li><a href="tel:+905058525331">+90 505 852 53 31</a></li>
+          <li><a href="mailto:info@aytechteknoloji.com.tr">info@aytechteknoloji.com.tr</a></li>
+          <li style="color:var(--muted);font-size:13px;">Feyzullah Serap Cd. 10/A<br>34843 Maltepe / İstanbul</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 aracsarjrehberi.com — Aytech Teknoloji İnovasyon Ltd. Şti.</span>
+      <span data-i18n="footer_disclaimer"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/905058525331?text=Merhaba%20Aytech%20ekibi%2C%20EV%20%C5%9Farj%20istasyonu%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" class="wa-float" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ═══════════════════════════════
+//  TRANSLATIONS
+// ═══════════════════════════════
+const T = {
+  tr: {
+    page_title: 'Araç Şarj Rehberi | aracsarjrehberi.com',
+    topbar_hub: '🔋 Elektrikli Araç Şarj Rehberi — Türkiye',
+    nav_calc: 'Hesaplayıcı', nav_guide: '2026 Rehberi', nav_products: 'Ürünler', nav_install: 'Kurulum Al',
+
+    hero_tag: 'Nisan 2026 tarife verileriyle güncellendi',
+    hero_h1: 'Hangi Şarj İstasyonunu<br><em>Almalıyım?</em>',
+    hero_sub: 'Cevap, evinizin elektrik tesisatında saklı. Yanlış ürün almadan önce iki soruyu netleştirin: altyapınız ne ve aracınızın OBC\'si kaç kW?',
+
+    answer_label: 'Kısa Cevap',
+    answer_h2: 'Doğru İstasyon Altyapıya Göre Seçilir',
+    answer_body: 'Evinizde <strong>monofaze (tek fazlı, 220V)</strong> tesisat varsa <strong>7.4 kW\'lık bir duvar tipi şarj cihazı</strong> yeterlidir. <strong>Trifaze (üç fazlı, 380V)</strong> tesisatınız varsa <strong>11 kW veya 22 kW</strong> istasyon kurabilirsiniz — ama bu aracınızın dahili şarj ünitesinin (OBC) desteklediği güce bağlıdır.',
+    answer_note: '⚡ Karar vermeden önce aracınızın OBC kapasitesini ve panonuzdaki sigorta değerini mutlaka kontrol edin. 22 kW\'lık bir istasyon, OBC\'si 11 kW olan bir araçta her zaman 11 kW\'ta çalışır — daha hızlı şarj etmez.',
+
+    calc_label: 'Ücretsiz Araç', calc_title: 'Şarj Süresi ve Maliyet Hesaplayıcı',
+    calc_desc: 'Aracınızın batarya kapasitesini ve kurulu istasyon gücünü girin; Nisan 2026 elektrik tarifeleriyle ne kadar süreceğini ve maliyetini anında görün.',
+    calc_infra: 'Tesisat Tipi', calc_mono: 'Monofaze (220V)', calc_tri: 'Trifaze (380V)',
+    calc_power: 'Şarj İstasyonu Gücü', calc_battery: 'Batarya Kapasitesi', calc_range: 'Şarj Aralığı (İsteğe Bağlı)',
+    calc_btn: '⚡ Hesapla', calc_empty: 'Bilgileri doldurun ve Hesapla\'ya basın.',
+
+    from_10:'%10\'dan başla', from_20:'%20\'den başla', from_30:'%30\'dan başla', from_40:'%40\'tan başla', from_50:'%50\'den başla',
+    to_70:'%70\'e kadar', to_80:'%80\'e kadar', to_90:'%90\'a kadar', to_100:'%100\'e kadar',
+    power_mono: ['7 kW — Monofaze', '7.4 kW — Monofaze'],
+    power_tri: ['11 kW — Trifaze', '22 kW — Trifaze'],
+
+    r_time: 'Tahmini Şarj Süresi',
+    r_time_sub: (f,t,k) => `%${f} → %${t} arası şarj — ${k} kWh`,
+    r_cost: 'Tahmini Elektrik Maliyeti',
+    r_station: 'İstasyon Gücü', r_battery: 'Batarya Kapasitesi', r_energy: 'Çekilecek Enerji',
+    r_warning: '⚠️ Bu hesaplama ideal koşullar için geçerlidir. Hava sıcaklığı, batarya yaşı, şebeke gerilim dalgalanmaları ve aracınızın OBC limiti gerçek süreyi değiştirebilir.',
+    r_buy: 'İstasyon Satın Al', r_install: 'Kurulum Talebi',
+
+    guide_label: 'Teknik Rehber', guide_title: '2026 EV Şarj Maliyet Analizi',
+    guide_desc: 'Nisan 2026 itibarıyla yürürlükteki kademeli elektrik tarifeleri ve şarj maliyetinizi düşürmek için kullanabileceğiniz stratejiler.',
+
+    t_tier: 'Tüketim Kademesi', t_usage: 'Aylık Tüketim', t_price: 'Birim Fiyat', t_strategy: 'Öneri',
+    t_low: 'Alt Kademe', t_low_strat: 'Günlük kısa mesafe kullananlar için ekonomik',
+    t_high: 'Üst Kademe', t_high_usage: '240 kWh üzeri', t_high_strat: 'Yüksek kilometreli EV kullanıcıları',
+    t_night: 'Gece Tarifesi', t_night_price: '~%50 indirim', t_night_strat: 'Üç zamanlı sayaç sahibi kullanıcılar',
+
+    g1_title: 'Gece Tarife Stratejisi',
+    g1_body: 'Üç zamanlı (gündüz–puant–gece) sayaca geçerseniz 23:00–07:00 saatleri arasındaki şarj maliyetiniz neredeyse yarıya düşer. Araç her gece şarj ediliyorsa aylık tasarruf ciddi bir boyuta ulaşabilir.',
+    g2_title: '240 kWh Eşiğini Aşmayın',
+    g2_body: 'Evdeki toplam tüketim ayda 240 kWh\'i geçince her birim daha pahalıya gelir. EV şarjını gece saatlerine kaydırmak hem kademe ücreti hem de birim fiyat açısından çifte avantaj sağlar.',
+    g3_title: 'OBC: Gözden Kaçan Hız Sınırı',
+    g3_body: 'Aracınızın dahili şarj ünitesi (OBC), AC şarj hızının tavanını belirler. Piyasadaki pek çok araçta bu değer 7.4 kW veya 11 kW\'tır. 22 kW istasyon kurduğunuzda aracınız yalnızca kendi OBC kapasitesinde şarj olur.',
+
+    why_title: 'Neden Aytech ile Kurulum?',
+    why_body: '<strong>Proje, kurulum ve Tunçmatik yetkili servis güvencesi</strong> tek elden. Uzman ekibimiz tesisatınızı değerlendirir, doğru istasyon gücünü belirler; izin, montaj ve devreye alma süreçlerini başından sonuna yönetir.',
+    why_b1: '✅ Yetkili Servis', why_b2: '🔧 Tunçmatik Garantili',
+
+    prod_title: 'Size Uygun Modeli Seçin',
+    prod_desc: 'Tunçmatik üretimi, Aytech montajı — evinizden ticari işletmeye kadar her ölçekte çözüm.',
+    p1_desc: 'Monofaze tesisata sahip konutlar için sade ve ekonomik duvar tipi şarj cihazı. Akşam prize takın, sabah yola çıkın.',
+    p2_desc: 'Hem ev hem ofis ortamı için geliştirilmiş akıllı şarj istasyonu. Uygulama üzerinden izleme, RFID erişim kontrolü ve OCPP desteğiyle tam donanımlı.',
+    p3_desc: 'Açık otopark, rezidans, AVM ve kurumsal filo projelerine özel ticari sınıf istasyon. Ödeme sistemi entegrasyonu ve IP54 koruma sınıfıyla zorlu koşullara hazır.',
+    p2_tag: 'En Çok Tercih', phase_mono: 'Monofaze', phase_tri: 'Trifaze',
+    p1_loc: 'İç/Dış Kullanım', p3_pay: 'Ödeme Entegreli',
+    buy_btn: 'Satın Al', install_btn: 'Kurulum Al',
+
+    net_label: 'Aytech Dijital Ağı', net_title: 'Diğer Kaynaklarımız',
+    net_desc: 'Araştırmadan satın almaya, servis ve teknik bilgiye kadar Aytech ekosisteminin tüm kapıları.',
+    net_tag1: 'Rehber', net_p1: 'UPS sistemleri için Türkiye\'nin en kapsamlı karşılaştırma ve satın alma rehberi.',
+    net_tag2: 'Teknik', net_p2: 'Kesintisiz güç kaynakları, akü sistemleri ve enerji kalitesi konularında derinlemesine teknik içerik.',
+    net_tag3: 'Kurumsal', net_p3: 'APC by Schneider Electric yetkili satıcısı Aytech Teknoloji\'nin kurumsal çözümler ve teklif sayfası.',
+
+    footer_brand: 'Elektrikli araç şarj sistemleri için bağımsız rehber ve teknik destek platformu. Aytech Teknoloji İnovasyon Ltd. Şti. bünyesinde hizmet vermektedir.',
+    footer_col1: 'Sayfa İçeriği', footer_l1: 'Şarj Hesaplayıcı', footer_l2: '2026 Tarife Rehberi', footer_l3: 'Tunçmatik EV Ürünleri', footer_l4: 'Online Sipariş',
+    footer_contact: 'İletişim',
+    footer_disclaimer: 'Tarife bilgileri Nisan 2026 verilerine dayanmaktadır. Güncel fiyatlar için dağıtım şirketinize danışınız.',
+  },
+  en: {
+    page_title: 'EV Charging Guide | aracsarjrehberi.com',
+    topbar_hub: '🔋 Turkey\'s EV Charging Knowledge Hub',
+    nav_calc: 'Calculator', nav_guide: '2026 Guide', nav_products: 'Products', nav_install: 'Book Installation',
+    hero_tag: 'Updated — April 2026 Tariff Data',
+    hero_h1: 'Which EV Charger<br>Should <em>You</em> Buy?',
+    hero_sub: 'Your answer is hidden in your electrical infrastructure. Make the right choice before spending a single lira.',
+    answer_label: 'Quick Answer',
+    answer_h2: 'It All Starts With Your Electrical Infrastructure',
+    answer_body: 'With a <strong>Single-Phase (220V)</strong> infrastructure, choose a <strong>7.4 kW charging station</strong>. With a <strong>Three-Phase (380V)</strong> infrastructure, you can go with an <strong>11 kW or 22 kW station</strong> — depending on your vehicle\'s onboard charger (OBC) limit.',
+    answer_note: '⚡ Do not decide without checking your vehicle\'s internal charging capacity (OBC) and your home\'s circuit breaker rating. A 22 kW station paired with a vehicle that has an 11 kW OBC will only ever charge at 11 kW.',
+    calc_label: 'Smart Tool', calc_title: 'Smart Charging Calculator',
+    calc_desc: 'Enter your setup once. Get charging time and cost estimates based on April 2026 electricity tariffs.',
+    calc_infra: 'Infrastructure Type', calc_mono: 'Single-Phase (220V)', calc_tri: 'Three-Phase (380V)',
+    calc_power: 'Station Power', calc_battery: 'Battery Capacity', calc_range: 'Charge Range (Optional)',
+    calc_btn: '⚡ Calculate', calc_empty: 'Select your setup and click Calculate to see your estimate.',
+    from_10:'From 10%', from_20:'From 20%', from_30:'From 30%', from_40:'From 40%', from_50:'From 50%',
+    to_70:'To 70%', to_80:'To 80%', to_90:'To 90%', to_100:'To 100%',
+    power_mono: ['7 kW — Single-Phase', '7.4 kW — Single-Phase'],
+    power_tri: ['11 kW — Three-Phase', '22 kW — Three-Phase'],
+    r_time: 'Estimated Charging Time',
+    r_time_sub: (f,t,k) => `From ${f}% to ${t}% — ${k} kWh needed`,
+    r_cost: 'Estimated Cost',
+    r_station: 'Station Power', r_battery: 'Battery Size', r_energy: 'Energy Needed',
+    r_warning: '⚠️ This calculation assumes ideal conditions. Actual times may vary due to ambient temperature, battery health, grid voltage fluctuations, and your vehicle\'s onboard charger (OBC) limit.',
+    r_buy: 'Buy a Station', r_install: 'Request Installation',
+    guide_label: 'Technical Guide', guide_title: '2026 EV Charging Cost Analysis',
+    guide_desc: 'Turkey\'s April 2026 electricity tariff structure — everything you need to plan smarter charges.',
+    t_tier: 'Consumption Tier', t_usage: 'Monthly Usage', t_price: 'Unit Price', t_strategy: 'Strategy',
+    t_low: 'Low Tier', t_low_strat: 'Ideal for moderate home charging',
+    t_high: 'High Tier', t_high_usage: 'Over 240 kWh', t_high_strat: 'EV owners with high mileage',
+    t_night: 'Night Tariff', t_night_price: 'Up to 50% off', t_night_strat: 'Three-rate meter users only',
+    g1_title: 'Three-Rate Meter Strategy',
+    g1_body: 'Switching to a three-rate meter allows you to charge between 23:00–07:00 at significantly reduced rates — potentially halving your monthly charging cost.',
+    g2_title: 'Stay Below the 240 kWh Threshold',
+    g2_body: 'Once your home consumption exceeds 240 kWh per month, every kilowatt-hour costs more. Monitor total household usage carefully and shift loads when possible.',
+    g3_title: 'OBC Limit: The Hidden Cap',
+    g3_body: 'Your vehicle\'s Onboard Charger (OBC) determines the maximum AC charging speed. A 22 kW station cannot overcome a 7.4 kW OBC limit — match your station to your vehicle\'s spec.',
+    why_title: 'Why Aytech for Installation?',
+    why_body: '<strong>Installation, design, and Tunçmatik quality assurance</strong> — all under one roof. Our certified engineers assess your infrastructure, recommend the right station power, and handle everything from permit paperwork to final commissioning.',
+    why_b1: '✅ Authorized Installer', why_b2: '🔧 Tunçmatik Guaranteed',
+    prod_title: 'Find Your Charging Station',
+    prod_desc: 'Manufactured by Tunçmatik, installed by Aytech — Turkey\'s most trusted EV charging solution.',
+    p1_desc: 'Compact and affordable wall-mounted home charger. Perfect for apartment residents and single-phase infrastructure. Plug-in and go solution for overnight charging.',
+    p2_desc: 'The all-rounder for homes and offices. Smart charging management, app connectivity, and RFID support. Compatible with single and three-phase infrastructure.',
+    p3_desc: 'Commercial-grade charging station designed for parking lots, office buildings, shopping centers, and fleet operators. Robust, weather-resistant, and payment-ready.',
+    p2_tag: 'Most Popular', phase_mono: 'Single-Phase', phase_tri: 'Three-Phase',
+    p1_loc: 'Indoor/Outdoor', p3_pay: 'Payment Ready',
+    buy_btn: 'Buy Now', install_btn: 'Install',
+    net_label: 'Aytech Ecosystem', net_title: 'More Resources',
+    net_desc: 'Everything you need across the Aytech digital network — from learning to buying to servicing.',
+    net_tag1: 'Guide', net_p1: 'Complete UPS buying guide. Compare models, understand power protection, and find the right UPS for your needs.',
+    net_tag2: 'Technical', net_p2: 'Deep technical knowledge base on uninterruptible power, backup systems, and energy continuity for critical infrastructure.',
+    net_tag3: 'Corporate', net_p3: 'APC by Schneider Electric authorized reseller. UPS systems, EV charging infrastructure, and energy solutions in Istanbul.',
+    footer_brand: 'Turkey\'s independent EV charging knowledge hub. Trusted guidance and professional installation through Aytech Teknoloji.',
+    footer_col1: 'On This Site', footer_l1: 'Charging Calculator', footer_l2: '2026 Tariff Guide', footer_l3: 'Tunçmatik EV Products', footer_l4: 'Buy Online',
+    footer_contact: 'Contact',
+    footer_disclaimer: 'Electricity tariff data: April 2026 averages. Consult your provider for exact rates.',
+  }
+};
+
+// ═══════════════════════════════
+//  ENGINE
+// ═══════════════════════════════
+let currentLang = 'tr';
+let currentPhase = 'mono';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('page-title').textContent = T[lang].page_title;
+  document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = T[lang][key];
+    if (val === undefined) return;
+    if (el.tagName === 'OPTION') { el.textContent = val; return; }
+    el.innerHTML = val;
+  });
+
+  rebuildPowerSelect();
+
+  // re-render result if visible
+  if (document.querySelector('.result-stat')) {
+    calculate();
+  } else {
+    document.getElementById('calcResult').innerHTML = `
+      <div class="result-empty">
+        <div class="result-empty-icon">🔌</div>
+        <p>${T[lang].calc_empty}</p>
+      </div>`;
+  }
+}
+
+function setPhase(phase, btn) {
+  currentPhase = phase;
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  rebuildPowerSelect();
+}
+
+function rebuildPowerSelect() {
+  const sel = document.getElementById('stationPower');
+  const prev = sel.value;
+  const vals = currentPhase === 'mono' ? ['7','7.4'] : ['11','22'];
+  const labels = currentPhase === 'mono' ? T[currentLang].power_mono : T[currentLang].power_tri;
+  sel.innerHTML = vals.map((v,i) =>
+    `<option value="${v}"${v===prev?' selected':''}>${labels[i]}</option>`
+  ).join('');
+}
+
+function updateBattery(val) {
+  document.getElementById('batteryDisplay').textContent = val + ' kWh';
+}
+
+function calculate() {
+  const power = parseFloat(document.getElementById('stationPower').value);
+  const battery = parseFloat(document.getElementById('batterySlider').value);
+  const fromPct = parseFloat(document.getElementById('chargeFrom').value);
+  const toPct = parseFloat(document.getElementById('chargeTo').value);
+  const energyNeeded = battery * (toPct - fromPct) / 100;
+  const hours = energyNeeded / power;
+  const h = Math.floor(hours);
+  const m = Math.round((hours - h) * 60);
+  const avgRate = energyNeeded <= 50 ? 3.11 : (3.11 + 3.90) / 2;
+  const cost = energyNeeded * avgRate;
+  const L = T[currentLang];
+  const timeUnit = currentLang === 'tr' ? ['s','dk'] : ['h','m'];
+
+  document.getElementById('calcResult').innerHTML = `
+    <div class="result-stat">
+      <div class="result-stat-label">${L.r_time}</div>
+      <div class="result-stat-value">${h}${timeUnit[0]} ${m}${timeUnit[1]}</div>
+      <div class="result-stat-sub">${L.r_time_sub(fromPct, toPct, energyNeeded.toFixed(1))}</div>
+    </div>
+    <div class="result-meta">
+      <div class="result-meta-item">
+        <div class="result-meta-label">${L.r_cost}</div>
+        <div class="result-meta-value" style="color:var(--green);">~${cost.toFixed(0)} TL</div>
+      </div>
+      <div class="result-meta-item">
+        <div class="result-meta-label">${L.r_station}</div>
+        <div class="result-meta-value">${power} kW</div>
+      </div>
+      <div class="result-meta-item">
+        <div class="result-meta-label">${L.r_battery}</div>
+        <div class="result-meta-value">${battery} kWh</div>
+      </div>
+      <div class="result-meta-item">
+        <div class="result-meta-label">${L.r_energy}</div>
+        <div class="result-meta-value">${energyNeeded.toFixed(1)} kWh</div>
+      </div>
+    </div>
+    <div class="result-warning">${L.r_warning}</div>
+    <div class="result-cta">
+      <a href="https://aytechelektromarket.com" target="_blank" class="btn-primary">${L.r_buy}</a>
+      <a href="https://tuncmatikservis.com" target="_blank" class="btn-secondary">${L.r_install}</a>
+    </div>`;
+}
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);} });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Init — Turkish default
+setLang('tr');
+</script>
+</body>
+</html>
